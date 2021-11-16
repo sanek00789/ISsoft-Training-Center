@@ -1,0 +1,11 @@
+<apex:page standardController="Contact" extensions="HomePageController" showHeader="false" lightningStylesheets="true" sidebar="false">
+    <apex:slds />
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                Hello, {!Contact.Name}! <br/>
+                <apex:commandButton value="Log out" styleClass="btn btn-success btn-sm" action="{!logOut}" />            
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

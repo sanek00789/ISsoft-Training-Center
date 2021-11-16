@@ -1,0 +1,36 @@
+<apex:page standardstylesheets="false" showheader="false" sidebar="false" controller="LoginPageController" lightningStylesheets="true" >
+    <apex:slds rendered="true"/>
+    <center>
+        <div  align="center" style="margin-top: 10%;">
+            <apex:form >
+                <article class="slds-card slds-size_1-of-4 slds-p-around_small">
+                    
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">    
+                        <h2 class="slds-card__header-title slds-card__body slds-card__body_inner">Log in</h2>
+                    </header>
+                    
+                    <apex:outputPanel id="getInput">                
+                        <div class="slds-card__body slds-card__body_inner">
+                            <apex:outputLabel style="font-style:italic" value="Username" for="userName"/>                        
+                            <apex:inputText id="userName" styleClass="form-control" value="{!userName}"/><br/>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <apex:outputLabel style="font-style:italic" value="Password" for="password"/>                         
+                            <apex:inputText id="password" styleClass="form-control" value="{!password}" /><br/>
+                        </div>
+                        <apex:commandButton value="Login" styleClass="btn btn-success btn-sm" action="{!getUsernameAndPassword}" />
+                    </apex:outputPanel>                
+                    
+                    <apex:outputPanel rendered="{!!getInput}">
+                        <div class="slds-card__body slds-card__body_inner">
+                            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">                        
+                                <apex:outputText value="Sorry. Username {!userName} is unavailable in database. Check your username or password.">                            
+                                </apex:outputText>
+                            </div>
+                        </div>
+                    </apex:outputPanel>                                
+                </article>   
+            </apex:form>
+        </div>        
+    </center>
+</apex:page>
