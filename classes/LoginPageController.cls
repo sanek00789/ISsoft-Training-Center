@@ -22,12 +22,10 @@ public class LoginPageController {
         ];
         
         if(!(!contact.isEmpty() && contact.size() > 0)){
-            getInput = false;
-            //ischeck = true;            
+            getInput = false;                        
             return null;
         }else{
-            getInput = true;
-            //ischeck = false;            
+            getInput = true;                        
             pageReference homePageReference = new pageReference('/apex/HomePage?Id=' + contact[0].Id);
             return homePageReference.setRedirect(true);           
         }        
