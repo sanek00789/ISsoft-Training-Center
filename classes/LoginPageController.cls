@@ -30,4 +30,9 @@ public class LoginPageController {
             return homePageReference.setRedirect(true);           
         }        
     }
+
+    public PageReference registration() {         
+        PageReference registrationPageReference = new PageReference('/apex/RegistrationPage');
+        return registrationPageReference.setRedirect(true); 
+    }
 }

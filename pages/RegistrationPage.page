@@ -1,0 +1,30 @@
+<apex:page controller="RegistrationPageController" showHeader="false" sidebar="false" lightningStylesheets="true">
+    <apex:sectionHeader title="Registration Page" subtitle="Create Contact"/>
+    <div  align="center" style="margin-top: 10%;">
+        <article class="slds-card slds-size_3-of-4 slds-p-around_small">
+            <apex:slds rendered="true"/>
+            
+            <apex:form >
+                <apex:pageMessages /> <!-- this is where the error messages will appear -->
+                <apex:pageBlock title="Contact Info" mode="detail">
+                    <apex:pageBlockSection showHeader="false" columns="2">
+                        <!--<apex:inputField value="{!contact.FirstName}" />
+                        <apex:inputField value="{!contact.LastName}" />
+                        <apex:inputField value="{!contact.Password__c}" />
+                        <apex:inputField value="{!contact.Username__c}" />-->
+                      
+                        <apex:inputText id="FirstName" styleClass="form-control" value="{!contact.FirstName}"/>                             
+                        <apex:inputText id="LastName" styleClass="form-control" value="{!contact.LastName}" label="Last Name*"/>                                        
+                        <apex:inputText id="userName" styleClass="form-control" value="{!contact.Username__c}" label="Username*"/>
+                        <apex:inputText id="password" styleClass="form-control" value="{!contact.Password__c}" label="Password*"/>                       
+                    </apex:pageBlockSection>
+                    
+                    <apex:pageBlockButtons location="bottom">
+                        <apex:commandButton action="{!back}" value="Back"/>
+                        <apex:commandButton action="{!save}" value="Save"/>
+                    </apex:pageBlockButtons>                    
+                </apex:pageBlock>    
+            </apex:form>
+        </article>
+    </div>
+</apex:page>

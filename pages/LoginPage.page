@@ -19,6 +19,7 @@
                             <apex:inputText id="password" styleClass="form-control" value="{!password}" /><br/>
                         </div>
                         <apex:commandButton value="Login" styleClass="btn btn-success btn-sm" action="{!getUsernameAndPassword}" />
+                        <apex:commandButton value="Registration" styleClass="btn btn-success btn-sm" action="{!registration}" />
                     </apex:outputPanel>                
                     
                     <apex:outputPanel rendered="{!!getInput}">

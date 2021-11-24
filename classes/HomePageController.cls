@@ -1,4 +1,4 @@
-public with sharing class HomePageController {
+public without sharing class HomePageController {
     public List<Contact> contacts {get;set;}
     public Contact contact {get;set;}
     public String contactId {get;set;}    
