@@ -35,4 +35,9 @@ public class LoginPageController {
         PageReference registrationPageReference = new PageReference('/apex/RegistrationPage');
         return registrationPageReference.setRedirect(true); 
     }
+
+    public PageReference forgotPassword() {         
+        PageReference forgotPasswordPageReference = new PageReference('/apex/ForgotPasswordPage');
+        return forgotPasswordPageReference.setRedirect(true); 
+    }
 }

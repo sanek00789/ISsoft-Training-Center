@@ -7,16 +7,12 @@
             <apex:form >
                 <apex:pageMessages /> <!-- this is where the error messages will appear -->
                 <apex:pageBlock title="Contact Info" mode="detail">
-                    <apex:pageBlockSection showHeader="false" columns="2">
-                        <!--<apex:inputField value="{!contact.FirstName}" />
-                        <apex:inputField value="{!contact.LastName}" />
-                        <apex:inputField value="{!contact.Password__c}" />
-                        <apex:inputField value="{!contact.Username__c}" />-->
-                      
+                    <apex:pageBlockSection showHeader="false" columns="2">                                              
                         <apex:inputText id="FirstName" styleClass="form-control" value="{!contact.FirstName}"/>                             
                         <apex:inputText id="LastName" styleClass="form-control" value="{!contact.LastName}" label="Last Name*"/>                                        
-                        <apex:inputText id="userName" styleClass="form-control" value="{!contact.Username__c}" label="Username*"/>
-                        <apex:inputText id="password" styleClass="form-control" value="{!contact.Password__c}" label="Password*"/>                       
+                        <apex:inputText id="UserName" styleClass="form-control" value="{!contact.Username__c}" label="Username*"/>
+                        <apex:inputText id="Password" styleClass="form-control" value="{!contact.Password__c}" label="Password*"/>
+                        <apex:inputText id="Email" styleClass="form-control" value="{!contact.Email}" label="Email*"/>                       
                     </apex:pageBlockSection>
                     
                     <apex:pageBlockButtons location="bottom">

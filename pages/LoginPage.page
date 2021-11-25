@@ -20,6 +20,7 @@
                         </div>
                         <apex:commandButton value="Login" styleClass="btn btn-success btn-sm" action="{!getUsernameAndPassword}" />
                         <apex:commandButton value="Registration" styleClass="btn btn-success btn-sm" action="{!registration}" />
+                        <apex:commandButton value="Forgot password" styleClass="btn btn-success btn-sm" action="{!forgotPassword}" />
                     </apex:outputPanel>                
                     
                     <apex:outputPanel rendered="{!!getInput}">
