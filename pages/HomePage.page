@@ -4,8 +4,34 @@
         <apex:pageBlock >
             <apex:pageBlockSection >
                 Hello, {!contact.Name}! <br/>
-                <apex:commandButton value="Log out" styleClass="btn btn-success btn-sm" action="{!logOut}" />           
-            </apex:pageBlockSection>
+                <apex:commandButton value="Log out" styleClass="btn btn-success btn-sm" action="{!logOut}" />
+                <apex:panelgrid columns="6">
+                    <apex:selectList value="{!selectedField1}" size="1" label="Sort by">
+                        <apex:selectOption itemValue="Name" itemLabel="Order Number"/>
+                        <apex:selectOption itemValue="Master__c" itemLabel="Master"/>
+                        <apex:selectOption itemValue="Price__c"  itemLabel="Price"/>
+                        <apex:selectOption itemValue="End_Date__c" itemLabel="End Date"/>
+                    </apex:selectList>
+                    <apex:selectList value="{!selectedField2}" size="1" label="Sort by">
+                        <apex:selectOption itemValue="Name" itemLabel="Order Number"/>
+                        <apex:selectOption itemValue="Master__c" itemLabel="Master"/>
+                        <apex:selectOption itemValue="Price__c"  itemLabel="Price"/>
+                        <apex:selectOption itemValue="End_Date__c" itemLabel="End Date"/>
+                    </apex:selectList>                    
+                    <apex:commandButton value="Sort Table" action="{!sortMethod}" reRender="orderTable"/>
+                </apex:panelgrid>
+                </apex:pageBlockSection>
         </apex:pageBlock>
+            <apex:pageBlock id="orderTable">
+                <apex:pageBlockTable value="{!orders}" var="order" >
+                    <apex:column headerValue="Select">
+                        <apex:inputCheckbox  />
+                    </apex:column>                   
+                    <apex:column value="{!order.Name}"/>
+                    <apex:column value="{!order.Master__c}"/>
+                    <apex:column value="{!order.Price__c}"/>
+                    <apex:column value="{!order.End_Date__c}"/>
+                </apex:pageBlockTable>                
+            </apex:pageBlock>
     </apex:form>
 </apex:page>
