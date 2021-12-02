@@ -1,4 +1,4 @@
-<apex:page controller="HomePageController" showHeader="false" lightningStylesheets="true" sidebar="false" action="{!getContact}">
+<apex:page controller="HomePageController" showHeader="false" lightningStylesheets="true" sidebar="false" action="{!getContact}" >
     <apex:slds />
     <apex:form >
         <apex:pageBlock >
@@ -7,23 +7,24 @@
                 <apex:commandButton value="Log out" styleClass="btn btn-success btn-sm" action="{!logOut}" />
                 <apex:panelgrid columns="6">
                     <apex:selectList value="{!selectedField1}" size="1" label="Sort by">
-                        <apex:selectOption itemValue="Name" itemLabel="Order Number"/>
-                        <apex:selectOption itemValue="Master__c" itemLabel="Master"/>
-                        <apex:selectOption itemValue="Price__c"  itemLabel="Price"/>
-                        <apex:selectOption itemValue="End_Date__c" itemLabel="End Date"/>
+                        <apex:selectOption itemValue="None" itemLabel="None"/>
+                        <apex:selectOption itemValue="< 100" itemLabel="< 100$"/>
+                        <apex:selectOption itemValue=">= 100 AND Price__c <= 300"  itemLabel="100$-300$"/>
+                        <apex:selectOption itemValue="> 300" itemLabel="> 300$"/>
+                        <apex:actionSupport event="onchange" action="{!filterMethod}" reRender="orderTable"/>
                     </apex:selectList>
                     <apex:selectList value="{!selectedField2}" size="1" label="Sort by">
-                        <apex:selectOption itemValue="Name" itemLabel="Order Number"/>
-                        <apex:selectOption itemValue="Master__c" itemLabel="Master"/>
-                        <apex:selectOption itemValue="Price__c"  itemLabel="Price"/>
-                        <apex:selectOption itemValue="End_Date__c" itemLabel="End Date"/>
-                    </apex:selectList>                    
-                    <apex:commandButton value="Sort Table" action="{!sortMethod}" reRender="orderTable"/>
+                        <apex:selectOption itemValue="None" itemLabel="None"/>
+                        <apex:selectOption itemValue="Low" itemLabel="Low"/>
+                        <apex:selectOption itemValue="Normal" itemLabel="Normal"/>
+                        <apex:selectOption itemValue="Hight"  itemLabel="Hight"/>
+                        <apex:actionSupport event="onchange" action="{!filterMethod}" reRender="orderTable"/>                        
+                    </apex:selectList>
                 </apex:panelgrid>
                 </apex:pageBlockSection>
         </apex:pageBlock>
             <apex:pageBlock id="orderTable">
-                <apex:pageBlockTable value="{!orders}" var="order" >
+                <apex:pageBlockTable value="{!orders}" var="order">
                     <apex:column headerValue="Select">
                         <apex:inputCheckbox  />
                     </apex:column>                   
@@ -31,6 +32,7 @@
                     <apex:column value="{!order.Master__c}"/>
                     <apex:column value="{!order.Price__c}"/>
                     <apex:column value="{!order.End_Date__c}"/>
+                    <apex:column value="{!order.Priority__c}"/>
                 </apex:pageBlockTable>                
             </apex:pageBlock>
     </apex:form>

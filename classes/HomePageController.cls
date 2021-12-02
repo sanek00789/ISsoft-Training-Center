@@ -5,11 +5,11 @@ public without sharing class HomePageController {
     public List<Order__c> orders {get;set;}
     public String selectedField1 {get;set;}
     public String selectedField2 {get;set;} 
-    public List<Order__c> selectOrders {get;set;}   
+    public List<Order__c> selectOrders {get;set;} 
     
     public HomePageController() { 
         contactId = ApexPages.currentPage().getParameters().get('id');
-        orders = OrderManager.getOrderSortByName();               
+        orders = OrderManager.getOrderSortByName();        
     }
 
     public PageReference getContact() {  
@@ -26,7 +26,7 @@ public without sharing class HomePageController {
         return loginPageReference.setRedirect(true); 
     }
     
-    public void sortMethod() {  
-        orders = OrderManager.sortByField(orders, selectedField1, selectedField2);        
+    public void filterMethod() {  
+        orders = OrderManager.filterByParam(selectedField1, selectedField2);        
     }
 }
