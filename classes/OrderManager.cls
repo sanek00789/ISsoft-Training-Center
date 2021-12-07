@@ -6,7 +6,8 @@ public without sharing class OrderManager {
                     Master__c,
                     Price__c,
                     End_Date__c,
-                    Priority__c
+                    Priority__c,
+                    Car_Owner__r.Name
             FROM Order__c
             ORDER BY Name
             LIMIT 50
@@ -18,14 +19,14 @@ public without sharing class OrderManager {
         if(String.isBlank(sortField1) || String.isBlank(sortField2)) {
             return new List<Order__c>();
         } else if (sortField1 != 'None' && sortField2 == 'None') { 
-            String query = 'SELECT Name, Master__c, Price__c, End_Date__c, Priority__c ' +
+            String query = 'SELECT Name, Master__c, Price__c, End_Date__c, Priority__c, Car_Owner__r.Name ' +
                             + 'FROM Order__c ' +            
                             + 'WHERE Price__c ' + sortField1 +
                             + ' LIMIT 50';     
             List<Order__c> sortOrders = Database.query(query);
             return sortOrders;
         } else if (sortField1 != 'None' && sortField2 != 'None') { 
-            String query = 'SELECT Name, Master__c, Price__c, End_Date__c, Priority__c ' +
+            String query = 'SELECT Name, Master__c, Price__c, End_Date__c, Priority__c, Car_Owner__r.Name ' +
                             + 'FROM Order__c ' +            
                             + 'WHERE Price__c ' + sortField1 +
                             + 'AND Priority__c =:  sortField2' +
@@ -33,7 +34,7 @@ public without sharing class OrderManager {
             List<Order__c> sortOrders = Database.query(query);
             return sortOrders;
         } else if (sortField1 == 'None' && sortField2 != 'None') { 
-            String query = 'SELECT Name, Master__c, Price__c, End_Date__c, Priority__c ' +
+            String query = 'SELECT Name, Master__c, Price__c, End_Date__c, Priority__c, Car_Owner__r.Name ' +
                             + 'FROM Order__c ' +            
                             + 'WHERE Priority__c =:  sortField2' +
                             + ' LIMIT 50';     

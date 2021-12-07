@@ -5,35 +5,59 @@
             <apex:pageBlockSection >
                 Hello, {!contact.Name}! <br/>
                 <apex:commandButton value="Log out" styleClass="btn btn-success btn-sm" action="{!logOut}" />
-                <apex:panelgrid columns="6">
-                    <apex:selectList value="{!selectedField1}" size="1" label="Sort by">
-                        <apex:selectOption itemValue="None" itemLabel="None"/>
-                        <apex:selectOption itemValue="< 100" itemLabel="< 100$"/>
-                        <apex:selectOption itemValue=">= 100 AND Price__c <= 300"  itemLabel="100$-300$"/>
-                        <apex:selectOption itemValue="> 300" itemLabel="> 300$"/>
-                        <apex:actionSupport event="onchange" action="{!filterMethod}" reRender="orderTable"/>
+                <apex:panelgrid columns="6" >
+
+                    <apex:panelGroup>
+                        <apex:outputText value="Filter by price: "/>
+                        <apex:selectList value="{!selectedPrice}" size="1">
+                            <apex:selectOption itemValue="None" itemLabel="None"/>
+                            <apex:selectOption itemValue="< 100" itemLabel="< 100$"/>
+                            <apex:selectOption itemValue=">= 100 AND Price__c <= 300"  itemLabel="100$-300$"/>
+                            <apex:selectOption itemValue="> 300" itemLabel="> 300$"/>
+                            <apex:actionSupport event="onchange" action="{!filterMethod}" reRender="orderTable"/>
+                        </apex:selectList>
+                    </apex:panelGroup>
+
+                    <apex:panelGroup>
+                        <apex:outputText value="Filter by priority: "/>
+                        <apex:selectList value="{!selectedPriority}" size="1">
+                            <apex:selectOption itemValue="None" itemLabel="None"/>
+                            <apex:selectOption itemValue="Low" itemLabel="Low"/>
+                            <apex:selectOption itemValue="Normal" itemLabel="Normal"/>
+                            <apex:selectOption itemValue="Hight"  itemLabel="Hight"/>
+                            <apex:actionSupport event="onchange" action="{!filterMethod}" reRender="orderTable"/>                        
+                        </apex:selectList>
+                    </apex:panelGroup>
+                    
+                    <apex:outputText value="Assign to:"/>
+                    <apex:selectList value="{!selectedCarOwnewr}" size="1">
+                        <apex:selectOptions value="{!items}"/>                                                
                     </apex:selectList>
-                    <apex:selectList value="{!selectedField2}" size="1" label="Sort by">
-                        <apex:selectOption itemValue="None" itemLabel="None"/>
-                        <apex:selectOption itemValue="Low" itemLabel="Low"/>
-                        <apex:selectOption itemValue="Normal" itemLabel="Normal"/>
-                        <apex:selectOption itemValue="Hight"  itemLabel="Hight"/>
-                        <apex:actionSupport event="onchange" action="{!filterMethod}" reRender="orderTable"/>                        
-                    </apex:selectList>
+                    <apex:commandButton value="Assign" action="{!processSelected}" rerender="out" status="status"/>
                 </apex:panelgrid>
                 </apex:pageBlockSection>
         </apex:pageBlock>
-            <apex:pageBlock id="orderTable">
-                <apex:pageBlockTable value="{!orders}" var="order">
+            <apex:pageBlock >
+                <apex:pageBlockTable value="{!wrapOrderList}" var="wrapOrder" id="orderTable">
                     <apex:column headerValue="Select">
-                        <apex:inputCheckbox  />
+                        <apex:inputCheckbox value="{!wrapOrder.selected}" id="inputId"/>
                     </apex:column>                   
-                    <apex:column value="{!order.Name}"/>
-                    <apex:column value="{!order.Master__c}"/>
-                    <apex:column value="{!order.Price__c}"/>
-                    <apex:column value="{!order.End_Date__c}"/>
-                    <apex:column value="{!order.Priority__c}"/>
-                </apex:pageBlockTable>                
+                    <apex:column value="{!wrapOrder.ord.Name}"/>
+                    <apex:column value="{!wrapOrder.ord.Car_Owner__r.Name}" headerValue="Car Owner"/>
+                    <apex:column value="{!wrapOrder.ord.Master__c}"/>                    
+                    <apex:column value="{!wrapOrder.ord.Price__c}"/>
+                    <apex:column value="{!wrapOrder.ord.End_Date__c}"/>
+                    <apex:column value="{!wrapOrder.ord.Priority__c}"/>
+                </apex:pageBlockTable>
             </apex:pageBlock>
+
+            <apex:pageBlock>
+                <apex:pageBlockTable value="{!selectedOrders}" var="c" id="table2" title="Selected Orders">
+                    <apex:column value="{!c.Name}" />
+                    <apex:column value="{!c.Price__c}" />                    
+                </apex:pageBlockTable>
+                <apex:commandButton value="Show Selected Orders" action="{!processSelected}" rerender="table2"/>
+            </apex:pageBlock>
+
     </apex:form>
 </apex:page>
