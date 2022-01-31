@@ -4,10 +4,16 @@ public class LoginPageController {
     public Boolean getInput {get;set;}
     public Boolean ischeck {get;set;}
     public List<Contact> contact {get;set;}
-    
+
     public loginPageController() {
         getInput = true;
         contact = new List<Contact>();
+        //urlToken = URL.getCurrentRequestUrl().getQuery();        
+        //urlToken = URL.getCurrentRequestUrl().getAuthority();
+        //urlToken = 'hi';
+        //urlToken = ApexPages.currentPage().getUrl();
+        //urlToken = ApexPages.currentPage().getAnchor();
+        //urlToken = URL.getCurrentRequestUrl().getRef();
     }
     
     public PageReference  getUsernameAndPassword() {       

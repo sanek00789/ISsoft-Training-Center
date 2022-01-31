@@ -1,0 +1,62 @@
+<template>    
+    <template if:false={isVisible}>
+        <div>
+            <p></p>
+        </div>
+    </template>
+    <template if:true={isVisible}>
+        <lightning-card variant="narrow">
+            <h2 slot="title">Hi, {contact.Name}</h2>
+            
+                <lightning-button label="Log out" onclick={handleLogout} slot="actions"></lightning-button>
+            
+            <div class="slds-var-p-around_medium">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="3" padding="around-small">
+                        <lightning-combobox 
+                            class="slds-align-middle" 
+                            label="Sort by price"
+                            value={valuePrice}                            
+                            options={optionPrices}
+                            onchange={handleChangePrice}
+                        ></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3" padding="around-small">
+                        <lightning-combobox 
+                            class="slds-align-middle" 
+                            label="Sort by priority"
+                            value={valuePriority}                            
+                            options={optionPriorities}
+                            onchange={handleChangePriority}
+                        ></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3" padding="around-small">
+                        
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3" padding="around-small">
+                        <lightning-combobox 
+                            class="slds-align-middle" 
+                            label="Assign to contact:"
+                            value={valueContact}                            
+                            options={optionsContact}
+                            onchange={handleChangeContact}                            
+                        ></lightning-combobox>
+                    </lightning-layout-item>   
+                </lightning-layout>
+            </div>
+            <div slot="footer">
+                <div class="slds-var-p-around_small lgc-bg-inverse">   
+                    <lightning-button label="Assign" onclick={handleAssign}></lightning-button>
+                    <!-- <lightning-button label="Vk" onclick={getIP}></lightning-button> -->                    
+                </div>
+            </div>
+            <lightning-datatable
+                key-field="Id"
+                data={orders}
+                columns={columns}
+                onrowselection={onRowSelection}
+                selected-rows={selectedRows}
+            ></lightning-datatable>
+        </lightning-card>
+    </template>            
+</template>

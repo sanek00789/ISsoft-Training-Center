@@ -1,0 +1,36 @@
+<template>
+    
+     
+      
+        <lightning-card title="Find a Order">
+            <div class="slds-m-around_medium">
+                <lightning-layout horizontal-align="center">
+                    <lightning-layout-item class="slds-align-middle">
+                        <lightning-combobox 
+                            class="slds-align-middle" 
+                            label="Choose Contact"
+                            value={value}                            
+                            options={options}
+                            onchange={handleChange}
+                        ></lightning-combobox>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-var-m-around_medium">
+                    <template if:true={orders}>
+                        <template for:each={orders} for:item="order">
+                            <p key={order.Id}>Order Name: {order.Name}, Price: {order.Price__c}</p>                        
+                        </template>
+                    </template>
+                    <template if:false={orders}>
+                        <h2 class="slds-align_absolute-center">The selected contact has't orders</h2> 
+                    </template>
+                </div>
+                  
+            </div>
+        </lightning-card>
+         
+      
+          
+    
+      
+  </template>

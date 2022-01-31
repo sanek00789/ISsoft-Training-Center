@@ -1,13 +1,36 @@
 <template>
+    <template if:false={isVisible}>
+        <p></p>
+    </template>
+    <template if:true={isVisible}>
     <lightning-card title="Registration Contact" icon-name="standard:record">
         <div class="slds-m-around_medium">            
-        <lightning-record-form
-            object-api-name={contactObject}
-            fields={myFields}
-            onsuccess={handleContactCreated}
-            oncancel={handleCancel}
-            onsubmit={handleSubmit}>
-        </lightning-record-form>
+            <lightning-record-edit-form object-api-name="Contact" onsuccess={handleContactCreated}>                
+                <lightning-input-field field-name="FirstName"> </lightning-input-field>
+                <lightning-input-field field-name="LastName"> </lightning-input-field>
+                <lightning-input-field field-name="Username__c"> </lightning-input-field>
+                <lightning-input-field field-name="Password__c"> </lightning-input-field>
+                <lightning-input-field field-name="Email"> </lightning-input-field>
+                <div class="slds-p-around_x-small slds-align_absolute-center">
+                    <lightning-button
+                        class="slds-p-around_x-small"
+                        label="Back"
+                        onclick={handleBack}
+                    ></lightning-button>
+                    <lightning-button
+                        class="slds-p-around_x-small"
+                        label="Cancel"
+                        onclick={handleReset}
+                    ></lightning-button>
+                    <lightning-button
+                        class="slds-p-around_x-small"
+                        variant="Brand"
+                        type="submit"
+                        label="Create new"                        
+                    ></lightning-button>
+                </div>
+            </lightning-record-edit-form>
         </div>
     </lightning-card>
+    </template>
 </template>

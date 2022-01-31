@@ -1,0 +1,19 @@
+<template>
+    <lightning-card variant="narrow" icon-name="action:new_contact">
+        <h1 slot="title">Log in</h1>
+        <div class="slds-p-around_medium">
+            <lightning-input label='Username' onchange={handleUsernameChange}></lightning-input>
+            <lightning-input label="Password" onchange={handlePasswordChange} class="slds-m-bottom_x-small"></lightning-input>            
+        </div>
+        <div slot="footer">
+            <div class="slds-p-around_small lgc-bg-inverse">
+                <!-- Button group: simple buttons -->
+                <lightning-button-group>
+                    <lightning-button label="Forgot password" onclick={handleForgotPassword}></lightning-button>
+                    <lightning-button label="Registration" onclick={handleRegistration}></lightning-button>
+                    <lightning-button label="Login" onclick={handleLogin}></lightning-button>
+                </lightning-button-group>
+            </div>
+        </div>
+    </lightning-card>
+</template>

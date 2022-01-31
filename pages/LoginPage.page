@@ -1,7 +1,8 @@
 <apex:page showheader="false" sidebar="false" controller="LoginPageController" lightningStylesheets="true" >
-    <apex:slds rendered="true"/>
+    <apex:slds rendered="true"/>   
+
     <center>
-        <div  align="center" style="margin-top: 10%;">
+        <div  align="center" style="margin-top: 10%;">            
             <apex:form >
                 <article class="slds-card slds-size_1-of-4 slds-p-around_small">
                     
@@ -14,7 +15,7 @@
                             <apex:outputLabel style="font-style:italic" value="Username" for="userName"/>                        
                             <apex:inputText id="userName" styleClass="form-control" value="{!userName}"/><br/>
                         </div>
-                        <div class="slds-card__body slds-card__body_inner">
+                        <div class="slds-card__body slds-card__body_inner">                            
                             <apex:outputLabel style="font-style:italic" value="Password" for="password"/>                         
                             <apex:inputText id="password" styleClass="form-control" value="{!password}" /><br/>
                         </div>
